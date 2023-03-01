@@ -1,46 +1,56 @@
-import React from 'react'
-import ButtonBack from '../components/ButtonBack'
-import Brand from '../components/Brand'
+import React from 'react';
 
-const Login = () => {
+const Login = ({ s, Image }) => {
   return (
-    <section className="flex w-screen min-h-screen bg-neutral3">
-      <div className="basis-1/2 hero-login sm:hidden lg:block">
-        <div className="relative flex flex-col items-center justify-center h-full gap-12">
-          <ButtonBack/>
-          <Brand scale="2"></Brand>
-
-          <p className="text-neutral2 font-bold opacity-80 text-3xl max-w-[450px] text-center">
-            Une  plateforme qui regroupe tout ce dont vous avez besoin en assistance médicale
-          </p>
-        </div>
-
+    <div className="h-screen flex justify-center">
+      <div className="md:basis-1/2 hidden sm:block rounded-tr-3xl rounded-br-3xl overflow-hidden bg-white">
+        <img
+          src={Image}
+          alt="Image de la page Login"
+          className="object-cover h-full w-full"
+        />
       </div>
-      <div className="flex flex-col items-center justify-center gap-10 sm:grow ">
-        <h1 className="text-5xl font-bold text-primary7">Se Connecter</h1>
-        <form className="py-16 px-10 rounded-[10px] shadow-lg bg-neutral1 opacity-90 max-w-[500px] w-full flex flex-col gap-4">
-          <div className="flex flex-col gap-2">
-            <label for="email" className="text-lg font-bold text-primary">Email ou Tel</label>
-            <input type="text" name="email" className="px-2 py-3 rounded-[5px] outline-none bg-neutral4" required/>
+
+      <div className="md:basis-1/2 flex flex-col gap-6 items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl text-sky-600">Se Connecter </h1>
+          {s && <p className="text-[10px] text-gray-600">{s}</p>}
+        </div>
+        <form className="flex flex-col items-center gap-3 bg-white p-6 rounded-md min-w-[400px] opacity-80">
+          <div className="flex flex-col gap-2 w-full">
+            <label htmlFor="emai">Email</label>
+            <input
+              type="email"
+              name="email"
+              className="border border-gray-200 outline-none rounded-sm px-1 py-2 bg-gray-50"
+              required
+            />
           </div>
 
-          <div className="flex flex-col gap-2">
-            <label for="password" className="text-lg font-bold text-primary">Mot de passe</label>
-            <input type="password" name="password" className="px-2 py-3 rounded-[5px] outline-none bg-neutral4" required/>
-            <button className="text-xs text-neutral7 hover:text-primary5">Mot de Passe Oublié?  </button>
+          <div className="w-full">
+            <div className="flex flex-col gap-2">
+              <label htmlFor="password">Mot de Passe</label>
+              <input
+                type="password"
+                name="password"
+                required
+                className="border border-gray-200 outline-none rounded-sm px-1 py-2 bg-gray-50"
+              />
+            </div>
+            <p className="text-xs text-center m-1 ">Mot de passe oublié?</p>
           </div>
-
-          <button type="submit" className="text-neutral3 w-full py-3 text-center rounded-[5px] bg-neutral7 mt-4">Valider</button>
+          <button className="bg-sky-500  text-white px-1 py-2 w-full rounded-sm">
+            Login
+          </button>
         </form>
-        <div className="flex flex-col gap-1 text-sm text-center text-neutral7">
-          <p className="font-bold">ou</p>
-          <p>Vous n'avez pas de compte?</p>
-          <button className="font-bold text-secondary5 hover:text-primary5" routerLink="/signup">S'inscrire</button>
+
+        <div className="flex flex-col text-center text-xs">
+          <p className="">Vous n'avez pas de compte?</p>
+          <a className="text-sky-600">S'inscrire</a>
         </div>
       </div>
-    </section>
+    </div>
+  );
+};
 
-  )
-}
-
-export default Login
+export default Login;

@@ -1,64 +1,90 @@
 import React from 'react';
 
-const Signup = () => {
+const Signup = ({ s }) => {
   return (
-    <section className="flex w-screen min-h-screen bg-neutral3">
-      <div className="basis-1/2 hero-signup sm:hidden lg:block">
-        <div className="relative flex flex-col items-center justify-center h-full gap-12">
-          <ButtonBack/>
-          <Brand scale="2"></Brand>
-
-          <p className="text-neutral2 font-bold opacity-80 text-3xl max-w-[450px] text-center">
-            La santé plus proche de vous
-          </p>
+    <div className="h-screen flex justify-center">
+      <div className="flex flex-col gap-4 items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl text-sky-600">Créer un compte</h1>
+          {s && <p className="text-[10px] text-gray-600">{s}</p>}
         </div>
-    
-      </div>
-      <div className="flex flex-col items-center justify-center gap-10 sm:grow ">
-        <h1 className="text-5xl font-bold text-primary7">S'inscrire</h1>
-        <form className="py-16 px-10 rounded-[10px] shadow-lg bg-neutral1 opacity-90 max-w-[500px] w-full flex flex-col gap-2">
-          <div className="flex justify-between gap-2">
-            <div className="flex flex-col w-full gap-2">
-              <label for="prenom" className="font-bold text-primary">Prénom</label>
-              <input type="text" name="prenom" className="px-2 py-3 rounded-[5px] outline-none bg-neutral4" required/>
+        <form className="flex flex-col items-center gap-5 bg-white p-6 rounded-md max-w-[450px] opacity-80">
+          <div className="flex gap-4">
+            <div className="flex flex-col gap-1">
+              <label htmlFor="nom">Nom </label>
+              <input
+                type="text"
+                name="nom"
+                required
+                className="border border-gray-200 outline-none rounded-sm px-1 py-2 bg-gray-50 w-full"
+              />
             </div>
-            <div className="flex flex-col w-full gap-2">
-              <label for="nom" className="font-bold text-primary">Nom</label>
-              <input type="text" name="nom" className="px-2 py-3 rounded-[5px] outline-none bg-neutral4" required/>
+
+            <div className="flex flex-col gap-1 ">
+              <label htmlFor="password">Prenom</label>
+              <input
+                type="text"
+                name="prenom"
+                required
+                className="border border-gray-200 outline-none rounded-sm px-1 py-2 bg-gray-50 w-full"
+              />
             </div>
           </div>
-    
-          <div className="flex flex-col gap-2">
-            <label for="email" className="font-bold text-primary">Email</label>
-            <input type="text" name="email" className="px-2 py-3 rounded-[5px] outline-none bg-neutral4" required/>
+
+          {s === 'medecin' && (
+            <div className="flex flex-col gap-1 w-full">
+              <label htmlFor="specialite">Specialite</label>
+              <input
+                type="specialite"
+                name="specialite"
+                className="border border-gray-200 outline-none rounded-sm px-1 py-2 bg-gray-50"
+                required
+              />
+            </div>
+          )}
+
+          <div className="flex flex-col gap-1 w-full">
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              name="email"
+              className="border border-gray-200 outline-none rounded-sm px-1 py-2 bg-gray-50"
+              required
+            />
           </div>
-    
-          <div className="flex flex-col gap-2">
-            <label for="tel" className="font-bold text-primary">Téléphone</label>
-            <input type="text" name="tel" className="px-2 py-3 rounded-[5px] outline-none bg-neutral4" required/>
+
+          <div className="flex flex-col gap-1 w-full">
+            <label htmlFor="password">Mot de Passe</label>
+            <input
+              type="password"
+              name="password"
+              required
+              className="border border-gray-200 outline-none rounded-sm px-1 py-2 bg-gray-50"
+            />
           </div>
-    
-          <div className="flex flex-col gap-2">
-            <label for="password" className="font-bold text-primary">Mot de passe</label>
-            <input type="password" name="password" className="px-2 py-3 rounded-[5px] outline-none bg-neutral4" required/>
+
+          <div className="flex flex-col gap-1 w-full">
+            <label htmlFor="password">Confirmer Mot de Passe</label>
+            <input
+              type="password"
+              name="password"
+              required
+              className="border border-gray-200 outline-none rounded-sm px-1 py-2 bg-gray-50"
+            />
           </div>
-    
-          <div className="flex flex-col gap-2">
-            <label for="confirm_password" className="font-bold text-primary">Confirmer Mot de passe</label>
-            <input type="password" name="confirm_password" className="px-2 py-3 rounded-[5px] outline-none bg-neutral4" required/>
-          </div>
-    
-          <button type="submit" className="text-neutral3 w-full py-3 text-center rounded-[5px] bg-neutral7 mt-4">Valider</button>
+
+          <button className="bg-sky-500 text-white px-1 py-2  w-full rounded-sm">
+            Valider
+          </button>
         </form>
-        <div className="flex flex-col gap-1 text-sm text-center text-neutral7">
-          <p className="font-bold">ou</p>
-          <p>Vous avez un compte?</p>
-          <button className="font-bold text-secondary5 hover:text-primary5">Se Connecter</button>
+
+        <div className="flex flex-col text-center text-xs">
+          <p className="">Vous avez un compte?</p>
+          <a className="text-sky-600">Se Connecter</a>
         </div>
       </div>
-    </section>
-  
-  )
-}
+    </div>
+  );
+};
 
-export default Signup
+export default Signup;
