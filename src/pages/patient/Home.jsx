@@ -1,9 +1,13 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import Logo from '../../components/Logo';
 import Constants from '../../utils/constants';
 
 const Home = () => {
+  const auth = useSelector((state) => state.auth);
+  console.log(auth);
+
   return (
     <div className="min-h-screen flex flex-col">
       <div className="mb-2 px-3 py-4 shadow-sm rounded-lg m-1 justify-between bg-primary5 ">
