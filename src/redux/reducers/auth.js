@@ -6,16 +6,22 @@ export const authSlice = createSlice({
   name: 'auth',
   initialState: {
     token: '',
-    user: '',
+    user: {},
   },
 
   reducers: {
     login: async (state, { payload }) => {
       try {
-        const res = await loginUser(payload);
-        console.log(res);
+        const response = await loginUser(payload);
+        console.log(response);
+        const { user, status, token } = response.data.data;
+        state.user = user;
+        state.token = token;
+
+        showAlert('Vous êtes connecté.', status);
       } catch (e) {
-        showAlert(e);
+        const { message, status } = e.response.data;
+        showAlert(message, status);
       }
     },
   },

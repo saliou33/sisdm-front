@@ -1,12 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { getAll } from '../../redux/reducers/patient';
 import { Outlet } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Logo from '../../components/Logo';
 import Constants from '../../utils/constants';
 
 const Home = () => {
-  const auth = useSelector((state) => state.auth);
-  console.log(auth);
+  const dispatch = useDispatch();
+  const patient = useSelector((state) => state.patient);
+  console.log(patient);
+
+  useEffect(() => {
+    dispatch(getAll());
+  }, []);
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -17,15 +24,13 @@ const Home = () => {
       <div className="flex flex-1 gap-3 py-3 px-1">
         <div className="flex relative flex-col basis-2/12 sm:3/12 max-w-[14rem] shadom-sm rounded-lg px-3 py-4 bg-yellow3 border-b-2 border-t-2 shadow-lg border-primary5 opacity-90 gap-4 brightness-125">
           {Constants.PATIENT_LINKS.map((e, k) => (
-            <>
-              <a
-                key={k}
-                href={e.path}
-                className="hover:text-primary5 cursor-pointer text-black"
-              >
-                {e.name}
-              </a>
-            </>
+            <a
+              key={k}
+              href={e.url}
+              className="hover:text-primary5 cursor-pointer text-black"
+            >
+              {e.name}
+            </a>
           ))}
 
           <button className="absolute bottom-5">Deconnexion</button>

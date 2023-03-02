@@ -5,7 +5,7 @@ import { useFormik } from 'formik';
 import { login } from '../redux/reducers/auth';
 
 const Login = ({ s, Image }) => {
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const formik = useFormik({
@@ -15,7 +15,9 @@ const Login = ({ s, Image }) => {
     },
     onSubmit: (values) => {
       dispatch(login(values));
-      //navigate('/p/');
+      setTimeout(() => {
+        navigate('/p/');
+      }, 1500);
     },
   });
 
