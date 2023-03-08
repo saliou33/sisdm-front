@@ -7,10 +7,12 @@ const ROUTE_USER_ROLE = ['p', 'a', 'm'];
 const ProtectedRoute = ({ guard }) => {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
+  console.log(auth);
   let location = useLocation();
 
   const userTypeInPath = location.pathname.split('/')[1];
-  //console.log(userTypeInPath);
+  const userType = auth?.user?.role?.charAt(0)?.toLowerCase();
+  const authorized = userTypeInPath === userType;
 
   useEffect(() => {}, [auth]);
 
@@ -19,13 +21,17 @@ const ProtectedRoute = ({ guard }) => {
   }
 
   if (guard) {
-    return auth.logged && <Navigate to="/p/rv" replace />;
+    return auth.logged && authorized ? (
+      <Navigate to={'/' + userTypeInPath} replace />
+    ) : (
+      <Outlet />
+    );
   }
 
-  return !auth.logged ? (
-    <Navigate to="/p/login" state={{ from: location }} replace />
-  ) : (
+  return auth.logged && authorized ? (
     <Outlet />
+  ) : (
+    <Navigate to="/p/login" state={{ from: location }} replace />
   );
 };
 
