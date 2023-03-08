@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getAll } from '../../redux/reducers/patient';
 import { Outlet } from 'react-router-dom';
 import Logo from '../../components/Logo';
 import Constants from '../../utils/constants';
 import Sidebar from '../../components/Sidebar';
 
-const Home = ({ dispatch, patients }) => {
+const Home = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <div className="mb-2 px-3 py-4 shadow-sm rounded-lg m-1 justify-between bg-primary5 ">

@@ -7,10 +7,10 @@ const ROUTE_USER_ROLE = ['p', 'a', 'm'];
 const ProtectedRoute = ({ guard }) => {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
-  console.log(auth);
-  let location = useLocation();
+  const location = useLocation();
 
-  const userTypeInPath = location.pathname.split('/')[1];
+  // authenticated user authorization to access routes
+  const userTypeInPath = location.pathname.split('/')[1].toLowerCase();
   const userType = auth?.user?.role?.charAt(0)?.toLowerCase();
   const authorized = userTypeInPath === userType;
 
@@ -20,6 +20,7 @@ const ProtectedRoute = ({ guard }) => {
     return <div>Loading...</div>;
   }
 
+  // block access to public routes when user is connected
   if (guard) {
     return auth.logged && authorized ? (
       <Navigate to={'/' + userTypeInPath} replace />
