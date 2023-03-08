@@ -3,7 +3,11 @@
     "browser": true,
     "es2021": true
   },
-  "extends": ["eslint:recommended", "plugin:react/recommended"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react-redux/recommended"
+  ],
   "overrides": [],
   "parserOptions": {
     "ecmaVersion": "latest",
@@ -12,6 +16,8 @@
   "plugins": ["react"],
   "rules": {
     "react/prop-types": "off",
-    "react/no-unescaped-entities": "off"
+    "react/no-unescaped-entities": "off",
+    "no-unused-vars": "off",
+    "react-redux/useSelector-prefer-selectors": "off"
   }
 }

@@ -1,12 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
-import { login } from '../redux/reducers/auth';
+import { loginUser } from '../redux/reducers/auth';
+import { showAlert } from './../utils/alert';
 
 const Login = ({ s, Image }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const auth = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    console.log(auth);
+  }, [dispatch, auth]);
 
   const formik = useFormik({
     initialValues: {
@@ -14,10 +21,14 @@ const Login = ({ s, Image }) => {
       password: '',
     },
     onSubmit: (values) => {
-      dispatch(login(values));
-      setTimeout(() => {
-        navigate('/p/');
-      }, 1500);
+      dispatch(loginUser(values))
+        .unwrap()
+        .then((result) => {
+          showAlert('Vous êtes connecté avec succés', 'success');
+        })
+        .catch((err) => {
+          showAlert(err?.message, err?.status);
+        });
     },
   });
 

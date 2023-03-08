@@ -1,20 +1,11 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { connect } from 'react-redux';
 import { getAll } from '../../redux/reducers/patient';
 import { Outlet } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import Logo from '../../components/Logo';
 import Constants from '../../utils/constants';
 
-const Home = () => {
-  const dispatch = useDispatch();
-  const patient = useSelector((state) => state.patient);
-  console.log(patient);
-
-  useEffect(() => {
-    dispatch(getAll());
-  }, []);
-
+const Home = ({ dispatch, patients }) => {
   return (
     <div className="min-h-screen flex flex-col">
       <div className="mb-2 px-3 py-4 shadow-sm rounded-lg m-1 justify-between bg-primary5 ">

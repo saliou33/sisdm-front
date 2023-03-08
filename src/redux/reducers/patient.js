@@ -7,10 +7,10 @@ export const patientSlice = createSlice({
     patients: [],
   },
   reducers: {
-    getAll: async () => {
+    getAll: async (state) => {
       try {
         const response = await getAllPatient();
-        console.log(response);
+        state.patients = response.data?.data.patients;
       } catch (e) {
         console.log(e);
       }

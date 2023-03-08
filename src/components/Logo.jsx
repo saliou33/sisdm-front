@@ -1,5 +1,4 @@
 import React from 'react';
-import LogoSVG from '../assets/images/logo.svg';
 
 const Logo = ({ z, c }) => {
   const scale = z ? z : '1';

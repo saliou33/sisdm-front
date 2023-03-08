@@ -1,6 +1,7 @@
-import axios from './axios';
+import crud from './crud';
+
+const api = new crud('/patients');
 
 export const getAllPatient = async () => {
-  const response = await axios.get('/patients');
-  return response;
+  return await api.getAll();
 };

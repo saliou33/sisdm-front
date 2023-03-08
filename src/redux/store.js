@@ -7,6 +7,6 @@ export default configureStore({
     auth: authReducer,
     patient: patientReducer,
   },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({ serializableCheck: false }),
+  // middleware: (getDefaultMiddleware) =>
+  //   getDefaultMiddleware({ serializableCheck: false }),
 });
