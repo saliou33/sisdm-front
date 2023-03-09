@@ -10,15 +10,17 @@ const Login = ({ s, Image }) => {
   const dispatch = useDispatch();
 
   const auth = useSelector((state) => state.auth);
+  useEffect(() => {}, [dispatch, auth]);
 
-  useEffect(() => {
-    console.log(auth);
-  }, [dispatch, auth]);
+  function cap(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
 
   const formik = useFormik({
     initialValues: {
       email: '',
       password: '',
+      role: cap(s) || '',
     },
     onSubmit: (values) => {
       dispatch(loginUser(values))
@@ -77,6 +79,12 @@ const Login = ({ s, Image }) => {
             </div>
             <p className="text-xs text-center m-1 ">Mot de passe oublié?</p>
           </div>
+          <input
+            type="hidden"
+            name="role"
+            value={formik.values.role}
+            onChange={formik.handleChange}
+          />
           <button
             className="bg-sky-500  text-white px-1 py-2 w-full rounded-sm"
             type="submit"

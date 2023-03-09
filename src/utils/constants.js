@@ -27,7 +27,7 @@ const LOGIN_ROUTES = [
   {
     path: '/a/login',
     Image: AdminLoginImage,
-    s: 'administrateur',
+    s: 'admin',
   },
 ];
 

@@ -5,7 +5,6 @@ import { Navigate, useLocation, Outlet } from 'react-router-dom';
 const ROUTE_USER_ROLE = ['p', 'a', 'm'];
 
 const ProtectedRoute = ({ guard }) => {
-  const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
   const location = useLocation();
 
